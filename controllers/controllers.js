@@ -4,7 +4,6 @@ const bcrypt = require("bcrypt");
 const saltRounds = 7;
 const validator = require("validator");
 const jwt = require("jsonwebtoken");
-const stripe = require("stripe")(require("../config").KEYS.SECRET);
 
 const login = async (req, res) => {
   try {
@@ -34,7 +33,7 @@ const login = async (req, res) => {
       })
       .catch((error) => {
         console.log(error);
-        res.status(403).send("Account not found.");
+        res.sendStatus(403);
       });
   } catch (error) {
     res.sendStatus(500);
@@ -97,33 +96,7 @@ const register = async (req, res) => {
   }
 };
 
-const paymentCharge = async (req, res) => {
-  try {
-    const {
-      userId,
-      name,
-      email,
-      phone,
-      address,
-      zipCode,
-      city,
-      country,
-      total,
-    } = req.body;
-    console.log(userId);
-
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: total * 100,
-      currency: "usd",
-    });
-    const { id, client_secret, amount, created } = paymentIntent;
-    res.send({ id, client_secret, amount, created });
-  } catch (error) {
-    res.send(error);
-  }
-};
-
-const token = async (req, res, next) => {
+const token = async (req, res) => {
   try {
     const { token } = req?.body;
 
@@ -133,7 +106,8 @@ const token = async (req, res, next) => {
       await pool
         .query("SELECT * FROM users WHERE id = $1;", [id])
         .then(async (response) => {
-          if (!response.rows.length) return res.status(401).send("Invalid Id");
+          if (!response.rows.length)
+            return res.status(401).send("Account Not Found.");
           const user = response.rows[0];
           const token = jwt.sign(
             { id: user.id, email: user.email },
@@ -156,6 +130,6 @@ const token = async (req, res, next) => {
 module.exports = {
   login,
   register,
-  paymentCharge,
+
   token,
 };

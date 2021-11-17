@@ -9,7 +9,13 @@ module.exports = async (req, res, next) => {
     if (!token) return res.sendStatus(401);
 
     jwt.verify(token, process.env.SECRET_TOKEN_KEY, (err) => {
-      if (err) return res.status(403).send("Invalid Token");
+      if (err) {
+        return err.name === "TokenExpiredError"
+          ? res
+              .status(403)
+              .send("Your session has expired. Please log in again.")
+          : res.status(403).send("Invalid Token.");
+      }
       return next();
     });
   } catch (err) {
