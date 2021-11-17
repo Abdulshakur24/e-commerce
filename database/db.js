@@ -1,7 +1,7 @@
 const Pool = require("pg").Pool;
 require("dotenv").config();
 
-const devConfig = new Pool({
+const developerConfig = new Pool({
   user: "postgres",
   password: "postgres",
   port: 5432,
@@ -17,6 +17,6 @@ const productionConfig = new Pool({
 });
 
 const pool =
-  process.env.NODE_ENV === "production" ? productionConfig : devConfig;
+  process.env.NODE_ENV === "production" ? productionConfig : developerConfig;
 
 module.exports = pool;
