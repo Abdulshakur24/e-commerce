@@ -10,7 +10,7 @@ historyRoute.get("/all", auth, async (req, res) => {
     const userId = jwt.verify(token, process.env.SECRET_TOKEN_KEY).id;
     await pool
       .query(
-        "SELECT stripe_id, date_purchase, status FROM history_purchase WHERE user_id=$1",
+        "SELECT stripe_id, date_purchase, status FROM history_purchase WHERE user_id=$1 ORDER BY date_purchase DESC;",
         [userId]
       )
       .then(async (responseOne) => {
@@ -19,7 +19,7 @@ historyRoute.get("/all", auth, async (req, res) => {
           responseOne.rows.map(async (object) => {
             await pool
               .query(
-                "SELECT product_name, product_quantity, product_price, product_image FROM history_product WHERE product_id=$1",
+                "SELECT product_name, product_quantity, product_price, product_image FROM history_product WHERE product_id=$1;",
                 [object.stripe_id]
               )
               .then((responseTwo) => {
@@ -28,7 +28,10 @@ historyRoute.get("/all", auth, async (req, res) => {
               });
           });
           setTimeout(() => resolve(data), 1000);
-        }).then((response) => res.send(response));
+        }).then((response) => {
+          console.log(response);
+          res.send(response);
+        });
       });
   } catch (error) {
     throw new Error(error);

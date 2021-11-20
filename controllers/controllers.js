@@ -98,11 +98,14 @@ const token = async (req, res) => {
   try {
     const { token } = req?.body;
 
-    const id = jwt.verify(token, process.env.SECRET_TOKEN_KEY).id;
+    const { id, email } = jwt.verify(token, process.env.SECRET_TOKEN_KEY);
 
     if (id) {
       await pool
-        .query("SELECT * FROM users WHERE id = $1;", [id])
+        .query("SELECT * FROM users WHERE id = $1 AND email = $2 ;", [
+          id,
+          email,
+        ])
         .then(async (response) => {
           if (!response.rows.length)
             return res.status(401).send("Account Not Found.");
