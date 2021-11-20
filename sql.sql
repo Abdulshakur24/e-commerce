@@ -65,7 +65,11 @@ VALUES (
     );
 SELECT stripe_id,
     date_purchase,
-    status
+    status,
+    product_name,
+    product_quantity,
+    product_price
 FROM history_purchase,
     history_product
-WHERE user_id = 1;
+WHERE user_id = 1
+    AND product_id = 'pi_3JxYkJIIzjjTQI3t0yl15bKx';

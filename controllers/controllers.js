@@ -32,7 +32,6 @@ const login = async (req, res) => {
         return res.status(403).send("Incorrect Email/Password.");
       })
       .catch((error) => {
-        console.log(error);
         res.sendStatus(403);
       });
   } catch (error) {
@@ -61,7 +60,6 @@ const register = async (req, res) => {
         .send("Password must contain a minimum of 8 characters in length.");
 
     bcrypt.genSalt(saltRounds, function (err, salt) {
-      console.log(err);
       bcrypt.hash(password, salt, async function (err, hashedPassword) {
         await pool
           .query("SELECT email FROM users WHERE email = $1;", [email])
