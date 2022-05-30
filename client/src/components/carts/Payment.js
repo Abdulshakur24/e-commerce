@@ -4,7 +4,7 @@ import axios from "../../axios";
 import { useDispatch, useSelector } from "react-redux";
 import { openOrCloseCheckoutModal } from "../../app-redux/features/Dialogs";
 import TextField from "@material-ui/core/TextField";
-import { ThemeProvider } from "@material-ui/styles";
+import { ThemeProvider } from "@material-ui/core/styles";
 import { LoadingButton } from "@mui/lab";
 import { toast } from "react-toastify";
 
