@@ -43,9 +43,7 @@ function Checkout() {
   const history = useHistory();
 
   const [stripePromise] = useState(() =>
-    loadStripe(
-      "pk_test_51I9m6jIIzjjTQI3tlzeqnfMb4TtFerGdacTn1afS9UxPZObGopye5u53kYB8E1wDnixxJ8DmoqUbNhysoeoNkXtp00sMYCrjkQ"
-    )
+    loadStripe(process.env.REACT_APP_PUBLISHABLE_KEY)
   );
 
   const user = useSelector((state) => state.user.user);
