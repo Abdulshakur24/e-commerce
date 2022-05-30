@@ -4,10 +4,12 @@
   align-items: center;
   background-color: #121212;
   height: 5.625rem;
-  position: fixed;
+  position: absolute;
   left: 0;
   right: 0;
   top: 0;
+  max-width: 1440px;
+  margin: 0 auto;
 
   z-index: 10;
 
