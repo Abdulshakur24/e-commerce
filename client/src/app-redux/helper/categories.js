@@ -2,15 +2,9 @@ export const categories = {
   headphones: [
     {
       id: 1,
-      imageM:
-        require("../../assets/category-headphones/mobile/image-xx99-mark-two.jpg")
-          .default,
-      imageT:
-        require("../../assets/category-headphones/tablet/image-xx99-mark-two.jpg")
-          .default,
-      imageD:
-        require("../../assets/category-headphones/desktop/image-xx99-mark-two.jpg")
-          .default,
+      imageM: require("../../assets/category-headphones/mobile/image-xx99-mark-two.jpg"),
+      imageT: require("../../assets/category-headphones/tablet/image-xx99-mark-two.jpg"),
+      imageD: require("../../assets/category-headphones/desktop/image-xx99-mark-two.jpg"),
       title: true,
       heading: "XX99 MARK II HEADPHONES",
       description:
@@ -20,15 +14,9 @@ export const categories = {
     },
     {
       id: 2,
-      imageM:
-        require("../../assets/category-headphones/mobile/image-xx99-mark-one.jpg")
-          .default,
-      imageT:
-        require("../../assets/category-headphones/tablet/image-xx99-mark-one.jpg")
-          .default,
-      imageD:
-        require("../../assets/category-headphones/desktop/image-xx99-mark-one.jpg")
-          .default,
+      imageM: require("../../assets/category-headphones/mobile/image-xx99-mark-one.jpg"),
+      imageT: require("../../assets/category-headphones/tablet/image-xx99-mark-one.jpg"),
+      imageD: require("../../assets/category-headphones/desktop/image-xx99-mark-one.jpg"),
       title: false,
       heading: "XX99 MARK I HEADPHONES",
       description:
@@ -38,12 +26,9 @@ export const categories = {
     },
     {
       id: 3,
-      imageM: require("../../assets/category-headphones/mobile/image-xx59.jpg")
-        .default,
-      imageT: require("../../assets/category-headphones/tablet/image-xx59.jpg")
-        .default,
-      imageD: require("../../assets/category-headphones/desktop/image-xx59.jpg")
-        .default,
+      imageM: require("../../assets/category-headphones/mobile/image-xx59.jpg"),
+      imageT: require("../../assets/category-headphones/tablet/image-xx59.jpg"),
+      imageD: require("../../assets/category-headphones/desktop/image-xx59.jpg"),
       title: false,
       heading: "XX59 HEADPHONES",
       description:
@@ -56,12 +41,9 @@ export const categories = {
   speakers: [
     {
       id: 1,
-      imageM: require("../../assets/category-speakers/mobile/image-zx9.jpg")
-        .default,
-      imageT: require("../../assets/category-speakers/tablet/image-zx9.jpg")
-        .default,
-      imageD: require("../../assets/category-speakers/desktop/image-zx9.jpg")
-        .default,
+      imageM: require("../../assets/category-speakers/mobile/image-zx9.jpg"),
+      imageT: require("../../assets/category-speakers/tablet/image-zx9.jpg"),
+      imageD: require("../../assets/category-speakers/desktop/image-zx9.jpg"),
       title: true,
       heading: "ZX9 SPEAKER",
       description:
@@ -71,12 +53,9 @@ export const categories = {
     },
     {
       id: 2,
-      imageM: require("../../assets/category-speakers/mobile/image-zx7.jpg")
-        .default,
-      imageT: require("../../assets/category-speakers/tablet/image-zx7.jpg")
-        .default,
-      imageD: require("../../assets/category-speakers/desktop/image-zx7.jpg")
-        .default,
+      imageM: require("../../assets/category-speakers/mobile/image-zx7.jpg"),
+      imageT: require("../../assets/category-speakers/tablet/image-zx7.jpg"),
+      imageD: require("../../assets/category-speakers/desktop/image-zx7.jpg"),
       title: false,
       heading: "ZX7 SPEAKER",
       description:
@@ -89,15 +68,9 @@ export const categories = {
   earphones: [
     {
       id: 1,
-      imageM:
-        require("../../assets/category-earphones/mobile/image-yx1-earphones.png")
-          .default,
-      imageT:
-        require("../../assets/category-earphones/tablet/image-yx1-earphones-1.png")
-          .default,
-      imageD:
-        require("../../assets/category-earphones/desktop/image-yx1-earphones.jpg")
-          .default,
+      imageM: require("../../assets/category-earphones/mobile/image-yx1-earphones.png"),
+      imageT: require("../../assets/category-earphones/tablet/image-yx1-earphones-1.png"),
+      imageD: require("../../assets/category-earphones/desktop/image-yx1-earphones.jpg"),
       title: true,
       heading: "YX1 WIRELESS EARPHONES",
       description:
