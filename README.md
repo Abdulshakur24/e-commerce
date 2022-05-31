@@ -18,7 +18,8 @@ This project is deployed at https://audiophile-e-commerce.herokuapp.com
 - Stripe
 - Moment
 - SCSS
-  _Generated with [CRA](https://create-react-app.dev/) version 18.1.0_
+
+_Generated with [CRA](https://create-react-app.dev/) version 18.1.0_
 
 ## Backend libraries used:
 
