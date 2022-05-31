@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Header from "../products/Headphones/sub-components/Header";
 import Carts from "../home/dialogs/Carts";
 import Menu from "../home/dialogs/Menu";
@@ -38,13 +38,11 @@ const theme = createMuiTheme({
   },
 });
 
+const stripePromise = loadStripe(process.env.REACT_APP_PUBLISHABLE_KEY);
+
 function Checkout() {
   const classes = useStyles();
   const history = useHistory();
-
-  const [stripePromise] = useState(() =>
-    loadStripe(process.env.REACT_APP_PUBLISHABLE_KEY)
-  );
 
   const user = useSelector((state) => state.user.user);
   return (

@@ -35,7 +35,7 @@ const theme = createMuiTheme({
     },
   },
 });
-console.log("hello");
+
 const controller = new AbortController();
 
 function Register() {
