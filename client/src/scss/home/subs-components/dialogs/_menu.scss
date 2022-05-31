@@ -5,10 +5,9 @@
   align-items: flex-start;
   background-color: rgba($color: #111, $alpha: 0.5);
   height: 100%;
-  z-index: 200;
+  z-index: 20;
 
   padding-top: 5.625rem;
-  z-index: 5;
   overflow-y: auto;
 
   .contents {
