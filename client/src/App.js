@@ -22,9 +22,24 @@ import Register from "./components/Registration/Register";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Histories from "./components/history/Histories";
+import { useSelector } from "react-redux";
 
 function App() {
   const { pathname } = useLocation();
+
+  const { isMenuOpen, isCartOpen, isCheckoutModalOpen } = useSelector(
+    (state) => state.dialogs
+  );
+
+  useEffect(() => {
+    const body = document.getElementsByTagName("body")[0];
+
+    if (isMenuOpen || isCartOpen || isCheckoutModalOpen) {
+      return body.setAttribute("data-lock", true);
+    }
+
+    body.setAttribute("data-lock", false);
+  }, [isMenuOpen, isCartOpen, isCheckoutModalOpen]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
