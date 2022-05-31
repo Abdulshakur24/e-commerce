@@ -299,7 +299,7 @@ function Register() {
 
                   <h2>OR</h2>
 
-                  <LoadingButton loading={lg_loading} onClick={navigate}>
+                  <LoadingButton disabled={lg_loading} onClick={navigate}>
                     <GoogleIcon className="googleIcon" /> GOOGLE
                   </LoadingButton>
                 </div>
@@ -359,7 +359,7 @@ function Register() {
 
                   <h2>OR</h2>
 
-                  <LoadingButton loading={rg_loading} onClick={navigate}>
+                  <LoadingButton disabled={rg_loading} onClick={navigate}>
                     <GoogleIcon className="googleIcon" /> GOOGLE
                   </LoadingButton>
                 </div>
