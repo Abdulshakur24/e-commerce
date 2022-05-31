@@ -13,6 +13,11 @@
 @import "./Registration/register";
 @import "./history/histories";
 
+[data-lock="true"] {
+  touch-action: none;
+  overflow: hidden;
+}
+
 :root {
   --toastify-color-info: rgb(0, 0, 0) !important;
   --toastify-toast-width: 340px !important;
