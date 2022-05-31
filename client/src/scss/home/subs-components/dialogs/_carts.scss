@@ -14,10 +14,6 @@
     width: 100%;
     z-index: 15;
 
-    &.close {
-      transform: translateY(-200%);
-    }
-
     @include breakpoint-up("medium") {
       top: 7.125rem;
       max-width: 377px;
@@ -97,8 +93,7 @@
         justify-content: flex-start;
         flex-direction: column;
         height: 283px;
-        overflow-y: auto !important;
-        touch-action: auto;
+        overflow-y: auto;
         z-index: 16;
 
         .title {
