@@ -14,7 +14,9 @@
 @import "./history/histories";
 
 [data-lock="true"] {
-  overflow: hidden;
+  body {
+    overflow: hidden;
+  }
 }
 
 :root {
