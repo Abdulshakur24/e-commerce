@@ -98,6 +98,7 @@
         flex-direction: column;
         height: 283px;
         overflow-y: auto !important;
+        touch-action: auto;
         z-index: 16;
 
         .title {
