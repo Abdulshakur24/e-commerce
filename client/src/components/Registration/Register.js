@@ -35,7 +35,7 @@ const theme = createMuiTheme({
     },
   },
 });
-
+console.log("hello");
 const controller = new AbortController();
 
 function Register() {
@@ -288,19 +288,21 @@ function Register() {
                   <em onClick={() => setState(false)}>Register here</em>
                 </p>
 
-                <LoadingButton
-                  type="submit"
-                  loading={lg_loading}
-                  variant="outlined"
-                >
-                  Login
-                </LoadingButton>
+                <div className="buttons">
+                  <LoadingButton
+                    type="submit"
+                    loading={lg_loading}
+                    variant="outlined"
+                  >
+                    Login
+                  </LoadingButton>
 
-                <h2>OR</h2>
+                  <h2>OR</h2>
 
-                <LoadingButton loading={lg_loading} onClick={navigate}>
-                  <GoogleIcon className="googleIcon" /> CONTINUE WITH GOOGLE
-                </LoadingButton>
+                  <LoadingButton loading={lg_loading} onClick={navigate}>
+                    <GoogleIcon className="googleIcon" /> GOOGLE
+                  </LoadingButton>
+                </div>
               </form>
             ) : (
               <form onSubmit={handleSubmitRegister}>
@@ -346,19 +348,21 @@ function Register() {
                   <em onClick={() => setState(true)}> Login here</em>
                 </p>
 
-                <LoadingButton
-                  loading={rg_loading}
-                  variant="outlined"
-                  type="submit"
-                >
-                  Register
-                </LoadingButton>
+                <div className="buttons">
+                  <LoadingButton
+                    loading={rg_loading}
+                    variant="outlined"
+                    type="submit"
+                  >
+                    Register
+                  </LoadingButton>
 
-                <h2>OR</h2>
+                  <h2>OR</h2>
 
-                <LoadingButton loading={rg_loading} onClick={navigate}>
-                  <GoogleIcon className="googleIcon" /> CONTINUE WITH GOOGLE
-                </LoadingButton>
+                  <LoadingButton loading={rg_loading} onClick={navigate}>
+                    <GoogleIcon className="googleIcon" /> GOOGLE
+                  </LoadingButton>
+                </div>
               </form>
             )}
           </div>
