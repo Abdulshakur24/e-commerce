@@ -6,7 +6,7 @@ This project is developed as an assignment for the Codecademy Full Stack Enginee
 
 ## Status
 
-This project is deployed at https://audiophile-e-commerce.herokuapp.com
+This project is deployed at https://e-commerce-2022.herokuapp.com
 
 ## Frontend libraries used:
 
