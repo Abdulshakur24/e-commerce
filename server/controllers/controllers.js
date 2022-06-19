@@ -51,8 +51,8 @@ const register = async (req, res) => {
     if (!(name && email && password))
       return res.status(400).send("Please fill out the fields.");
 
-    if (!(name.length >= 5))
-      return res.status(403).send("Name must be greater than 4");
+    if (!(name.length > 3))
+      return res.status(403).send("Name must be greater than 3");
 
     if (!validator.isEmail(email))
       return res.status(403).send("Please Enter Your Email Address.");
