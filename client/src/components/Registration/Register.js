@@ -8,7 +8,7 @@ import {
 } from "@material-ui/core/styles";
 import Logo from "../../assets/audiophile.svg";
 import axios from "../../axios";
-import { useDispatch, useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { loadUser } from "../../app-redux/features/User";
 import { LoadingButton } from "@mui/lab";
 import { Redirect } from "react-router-dom";
@@ -27,6 +27,8 @@ const useStyles = makeStyles((theme) =>
     },
   })
 );
+
+const isProduction = process.env.NODE_ENV === "production";
 
 const theme = createMuiTheme({
   palette: {
@@ -50,15 +52,13 @@ function Register() {
     rg_password: "",
   });
 
-  const user = useSelector((state) => state.user.user);
+  const user = useSelector((state) => state.user.user, shallowEqual);
 
   const [state, setState] = useState(true);
   const [rg_show, setRgShow] = useState(false);
   const [lg_show, setLgShow] = useState(false);
   const [lg_loading, setLgLoading] = useState(false);
   const [rg_loading, setRgLoading] = useState(false);
-
-  const isProduction = process.env.NODE_ENV === "production";
 
   const dispatch = useDispatch();
 
@@ -69,30 +69,31 @@ function Register() {
       Authorization: `Bearer ${token}`,
     };
 
-    if (token) {
-      setLgLoading(true);
-      setRgLoading(true);
-
-      axios
-        .post(
+    const tokenExists = async () => {
+      try {
+        const { data } = await axios.post(
           "/token",
           { token },
           { method: "POST", signal: controller.signal }
-        )
-        .then((response) => {
-          const data = response.data;
-          sessionStorage.setItem("token", data?.token);
-          toastifyInfo(`Welcome back ${data.name}!`);
-          setLgLoading(false);
-          setRgLoading(false);
-          dispatch(loadUser(data));
-        })
-        .catch((error) => {
-          setLgLoading(false);
-          setRgLoading(false);
-          toastifyError(error.response?.data);
-        });
+        );
+        sessionStorage.setItem("token", data?.token);
+        toastifyInfo(`Welcome back ${data.name}!`);
+        setLgLoading(false);
+        setRgLoading(false);
+        dispatch(loadUser(data));
+      } catch (error) {
+        setLgLoading(false);
+        setRgLoading(false);
+        toastifyError(error.response?.data);
+      }
+    };
+
+    if (token) {
+      setLgLoading(true);
+      setRgLoading(true);
+      tokenExists();
     }
+
     return () => {
       controller.abort();
     };
@@ -102,21 +103,24 @@ function Register() {
     setLgLoading(true);
     setRgLoading(true);
 
-    axios
-      .get("/auth/credentials", { signal: controller.signal })
-      .then((response) => {
-        const data = response.data;
+    const credentialsExists = async () => {
+      try {
+        const { data } = await axios.get("/auth/credentials", {
+          signal: controller.signal,
+        });
         sessionStorage.setItem("token", data?.token);
         toastifyInfo(`Welcome ${data.name}!`);
         setLgLoading(false);
         setRgLoading(false);
         dispatch(loadUser(data));
-      })
-      .catch((error) => {
+      } catch (error) {
         setLgLoading(false);
         setRgLoading(false);
         error.response?.data && toastifyError(error.response?.data);
-      });
+      }
+    };
+
+    credentialsExists();
 
     return () => {
       controller.abort();
@@ -130,24 +134,21 @@ function Register() {
           lg_email: "guest@gmail.com",
           lg_password: "guest1234",
         });
-        const handleSubmitGuest = () => {
+        const handleSubmitGuest = async () => {
           setLgLoading(true);
-          axios
-            .post("/user/login", {
+          try {
+            const { data } = await axios.post("/user/login", {
               lg_email: "guest@gmail.com",
               lg_password: "guest1234",
-            })
-            .then((response) => {
-              const data = response.data;
-              sessionStorage.setItem("token", data.token);
-              toastifyInfo(`Welcome ${data.name}!`);
-              setLgLoading(false);
-              dispatch(loadUser(data));
-            })
-            .catch((error) => {
-              setLgLoading(false);
-              toastifyError(error.response?.data);
             });
+            sessionStorage.setItem("token", data.token);
+            toastifyInfo(`Welcome ${data.name}!`);
+            setLgLoading(false);
+            dispatch(loadUser(data));
+          } catch (error) {
+            setLgLoading(false);
+            toastifyError(error.response?.data);
+          }
         };
         handleSubmitGuest();
       };
@@ -202,45 +203,40 @@ function Register() {
   const { lg_email, lg_password } = userLogin;
   const { rg_name, rg_email, rg_password } = userRegister;
 
-  const handleSubmitLogin = (e) => {
-    e?.preventDefault();
+  const handleSubmitLogin = async (e) => {
+    e.preventDefault();
     setLgLoading(true);
-    axios
-      .post("/user/login", userLogin)
-      .then(({ data }) => {
-        sessionStorage.setItem("token", data.token);
-        toastifyInfo(`Welcome ${data.name}!`);
-        setLgLoading(false);
-        dispatch(loadUser(data));
-      })
-      .catch(({ response }) => {
-        setLgLoading(false);
-        toastifyError(response?.data);
-      });
+    try {
+      const { data } = await axios.post("/user/login", userLogin);
+      sessionStorage.setItem("token", data.token);
+      toastifyInfo(`Welcome ${data.name}!`);
+      setLgLoading(false);
+      dispatch(loadUser(data));
+    } catch ({ response }) {
+      setLgLoading(false);
+      toastifyError(response?.data);
+    }
   };
 
-  const handleSubmitRegister = (e) => {
+  const handleSubmitRegister = async (e) => {
     e.preventDefault();
     setRgLoading(true);
 
-    axios
-      .post("/user/register", userRegister)
-      .then((response) => {
-        const data = response.data;
-        setRgLoading(false);
-        sessionStorage.setItem("token", data.token);
-        toastifyInfo(`Welcome ${data.name}!`);
-        dispatch(loadUser(data));
-      })
-      .catch((error) => {
-        setRgLoading(false);
-        toastifyError(error.response?.data);
-      });
+    try {
+      const { data } = await axios.post("/user/register", userRegister);
+      setRgLoading(false);
+      sessionStorage.setItem("token", data.token);
+      toastifyInfo(`Welcome ${data.name}!`);
+      dispatch(loadUser(data));
+    } catch (error) {
+      setRgLoading(false);
+      toastifyError(error.response?.data);
+    }
   };
 
   const navigate = () =>
     (window.location.href = isProduction
-      ? "https://audiophile-e-commerce.herokuapp.com/auth/google"
+      ? "https://e-commerce-2022.herokuapp.com/auth/google"
       : "http://localhost:5010/auth/google");
 
   return (
@@ -284,7 +280,7 @@ function Register() {
                 </div>
 
                 <p>
-                  Don't have an account?{" "}
+                  Don't have an account?
                   <em onClick={() => setState(false)}>Register here</em>
                 </p>
 
