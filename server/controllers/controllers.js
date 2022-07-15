@@ -126,7 +126,7 @@ const token = async (req, res) => {
     }
     res.sendStatus(401);
   } catch (error) {
-    throw new Error(error);
+    res.status(404).send({ message: "Token not found!" });
   }
 };
 
