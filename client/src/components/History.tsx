@@ -11,26 +11,24 @@ function History({
   status: string;
   products: any;
 }) {
-  const getTotal = () => {
-    return 5;
-    // products
-    //   .map(
-    //     ({ product_price, product_quantity }) =>
-    //       product_price * product_quantity
-    //   )
-    //   .reduce((a, b) => a + b, 0);
+  const getTotal = (): number => {
+    return products
+      .map(
+        ({ product_price, product_quantity }: any) =>
+          product_price * product_quantity
+      )
+      .reduce((a: number, b: number) => a + b, 0);
   };
 
-  const getVatFromTotal = () => {
-    return 50;
-    // Math.round(
-    //   products
-    //     .map(
-    //       ({ product_price, product_quantity }) =>
-    //         product_price * product_quantity
-    //     )
-    //     .reduce((a, b) => a + b, 0) * 0.02
-    // );
+  const getVatFromTotal = (): number => {
+    return Math.round(
+      products
+        .map(
+          ({ product_price, product_quantity }: any) =>
+            product_price * product_quantity
+        )
+        .reduce((a: number, b: number) => a + b, 0) * 0.02
+    );
   };
 
   return (
