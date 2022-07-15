@@ -6,7 +6,7 @@ const ProductsContext = createContext({} as ProductsContextType);
 
 export const useProducts = () => useContext(ProductsContext);
 
-export const ProductsProvider = ({ children }: { children: ReactNode }) => {
+const ProductsProvider = ({ children }: { children: ReactNode }) => {
   const [products, setProducts] = useState(DefaultProducts);
 
   const getProductByName = (name: string): productType[] => {
@@ -55,3 +55,5 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
     </ProductsContext.Provider>
   );
 };
+
+export default ProductsProvider;
