@@ -36,8 +36,6 @@ function HandleSuspense() {
 
   const { data: orderHistory } = useQuery(`order-history`, getOrderHistory, {
     suspense: true,
-    staleTime: Infinity,
-    cacheTime: Infinity,
   });
 
   return (
