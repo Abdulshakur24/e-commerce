@@ -5,15 +5,10 @@ export const useAuth = create<AuthType>((set) => ({
   user: null,
   loadUser: (payload: payloadType) => {
     localStorage.setItem("token", payload.token);
-    set((state) => {
-      state.user = payload;
-      return state;
-    });
+    set(() => ({ user: payload }));
   },
   logout: () => {
-    set((state) => {
-      state.user = null;
-      return state;
-    });
+    localStorage.removeItem("token");
+    set(() => ({ user: null }));
   },
 }));
