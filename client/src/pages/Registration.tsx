@@ -1,5 +1,5 @@
 import { TextField } from "@mui/material";
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import Logo from "src/assets/audiophile.svg";
 import axios from "src/utils/axios";
@@ -13,6 +13,7 @@ import {
   toastifyInfo,
   useStyles,
 } from "src/utils/helper";
+import { useQuery } from "react-query";
 
 const isProduction = process.env.NODE_ENV === "production";
 
@@ -41,48 +42,33 @@ function Register() {
 
   const { loadUser } = useAuth();
 
-  useEffect(() => {
+  // login in automatically if token existed in localStorage.
+
+  useQuery("user/auto-login", async () => {
     const token = localStorage.getItem("token");
-
-    const tokenExists = async () => {
-      try {
-        const { data } = await axios.post(
-          "/token",
-          { token },
-          {
-            method: "POST",
-            signal: controller.signal,
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        );
-        localStorage.setItem("token", data.token);
-        toastifyInfo(`Welcome back ${data.name}!`);
-        setLgLoading(false);
-        setRgLoading(false);
-        loadUser(data);
-        navigator("/", { replace: true });
-      } catch (error: any) {
-        setLgLoading(false);
-        setRgLoading(false);
-        toastifyError(error.response?.data);
-      }
-    };
-
     if (token) {
-      setLgLoading(true);
-      setRgLoading(true);
-      tokenExists();
+      const { data } = await axios.post(
+        "/user/token",
+        { token },
+        {
+          method: "POST",
+          signal: controller.signal,
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      localStorage.setItem("token", data.token);
+      toastifyInfo(`Welcome back ${data.name}!`);
+      setLgLoading(false);
+      setRgLoading(false);
+      loadUser(data);
+      navigator("/", { replace: true });
     }
+  });
 
-    return () => {
-      controller.abort();
-    };
-  }, [navigator, loadUser]);
-
-  useEffect(() => {
+  // check temporary google credentials in db
+  useQuery("user/google-credential", () => {
     setLgLoading(true);
     setRgLoading(true);
-
     const credentialsExists = async () => {
       try {
         const { data } = await axios.get("/auth/credentials", {
@@ -101,56 +87,8 @@ function Register() {
         error.response?.data && toastifyError(error.response?.data);
       }
     };
-
     credentialsExists();
-
-    return () => {
-      controller.abort();
-    };
-  }, [navigator, loadUser]);
-
-  useEffect(() => {
-    const loginAsGuest = () => {
-      const login = () => {
-        setUserLogin({
-          lg_email: "guest@gmail.com",
-          lg_password: "guest1234",
-        });
-        const handleSubmitGuest = async () => {
-          setLgLoading(true);
-          try {
-            const { data } = await axios.post(
-              "/user/login",
-              {
-                lg_email: "guest@gmail.com",
-                lg_password: "guest1234",
-              },
-              { method: "POST" }
-            );
-            localStorage.setItem("token", data.token);
-            toastifyInfo(`Welcome ${data.name}!`);
-            setLgLoading(false);
-            loadUser(data);
-            navigator("/");
-          } catch (error: any) {
-            setLgLoading(false);
-            toastifyError(error.response?.data);
-          }
-        };
-        handleSubmitGuest();
-      };
-
-      toastifyInfo(
-        "Feeling lazy to sign up? Click here to sign in as a Guest",
-        login,
-        5000,
-        "top-right"
-      );
-    };
-
-    if (lg_loading && rg_loading && !Boolean(localStorage.getItem("token")))
-      setTimeout(() => loginAsGuest(), 2000);
-  }, [lg_loading, rg_loading, loadUser, navigator]);
+  });
 
   const handleLogin = (name: string) => (e: ChangeEvent<HTMLInputElement>) => {
     setUserLogin({ ...userLogin, [name]: e.target.value });
