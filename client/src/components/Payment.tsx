@@ -4,7 +4,12 @@ import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import axios from "src/utils/axios";
 import { LoadingButton } from "@mui/lab";
 import { ThemeProvider } from "@mui/material/styles";
-import { toastifyError, toastifyInfo, toastifySucces } from "src/utils/helper";
+import {
+  theme,
+  toastifyError,
+  toastifyInfo,
+  toastifySucces,
+} from "src/utils/helper";
 import { useToggle } from "src/contexts/ToggleProvider";
 import type {
   StripeCardElement,
@@ -14,7 +19,7 @@ import { TextField } from "@mui/material";
 import { useCarts } from "src/contexts/CartsProvider";
 import { useAuth } from "src/hooks/useAuth";
 
-function Payment({ theme }: any) {
+function Payment() {
   const [processing, setProcessing] = useState(false);
   const [complete, setComplete] = useState(false);
   const { user } = useAuth();
