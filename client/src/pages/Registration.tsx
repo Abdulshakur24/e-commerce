@@ -7,12 +7,7 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import { useNavigate } from "react-router-dom";
 import GoogleIcon from "@mui/icons-material/Google";
 import { useAuth } from "src/hooks/useAuth";
-import {
-  theme,
-  toastifyError,
-  toastifyInfo,
-  useStyles,
-} from "src/utils/helper";
+import { theme, toastifyError, toastifyInfo } from "src/utils/helper";
 import { useQuery } from "react-query";
 
 const isProduction = process.env.NODE_ENV === "production";
@@ -20,7 +15,6 @@ const isProduction = process.env.NODE_ENV === "production";
 const controller = new AbortController();
 
 function Register() {
-  const classes = useStyles();
   const [userLogin, setUserLogin] = useState({
     lg_email: "",
     lg_password: "",
@@ -155,7 +149,7 @@ function Register() {
               <form onSubmit={handleSubmitLogin}>
                 <h1>Login</h1>
                 <TextField
-                  className={`${classes} a`}
+                  className={` a`}
                   label="Email"
                   variant="outlined"
                   id="mui-theme-provider-outlined-input-email"
@@ -165,7 +159,7 @@ function Register() {
                   value={lg_email}
                 />
                 <TextField
-                  className={`${classes} a`}
+                  className={` a`}
                   label="Password"
                   variant="outlined"
                   id="mui-theme-provider-outlined-input-password"
@@ -205,7 +199,7 @@ function Register() {
               <form onSubmit={handleSubmitRegister}>
                 <h1>Register</h1>
                 <TextField
-                  className={`${classes} a`}
+                  className={` a`}
                   label="Name"
                   variant="outlined"
                   id="mui-theme-provider-outlined-input"
@@ -215,7 +209,7 @@ function Register() {
                   value={rg_name}
                 />
                 <TextField
-                  className={`${classes} a`}
+                  className={` a`}
                   label="Email"
                   variant="outlined"
                   id="mui-theme-provider-outlined-input"
@@ -225,7 +219,7 @@ function Register() {
                   value={rg_email}
                 />
                 <TextField
-                  className={`${classes} a`}
+                  className={` a`}
                   label="Password"
                   variant="outlined"
                   id="mui-theme-provider-outlined-input"

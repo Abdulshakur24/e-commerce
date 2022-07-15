@@ -8,15 +8,15 @@ import Modal from "src/components/Modal";
 import Payment from "src/components/Payment";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import { theme, useStyles } from "src/utils/helper";
+import { useCarts } from "src/contexts/CartsProvider";
 
 const stripePromise = loadStripe(
   process.env.REACT_APP_PUBLISHABLE_KEY as string
 );
 
 function Checkout() {
-  const classes = useStyles();
   const navigator = useNavigate();
+  const { carts } = useCarts();
 
   return (
     <div className="checkout">
@@ -32,12 +32,12 @@ function Checkout() {
             </p>
           </div>
           <div className="flex-item">
-            <Summary />
+            {(carts.length && <Summary />) || null}
             <div className="allDetails">
               <div className="info">
                 <h2>CHECKOUT</h2>
                 <Elements stripe={stripePromise}>
-                  <Payment classes={classes} theme={theme} />
+                  <Payment />
                 </Elements>
               </div>
             </div>
