@@ -14,7 +14,7 @@ import { TextField } from "@mui/material";
 import { useCarts } from "src/contexts/CartsProvider";
 import { useAuth } from "src/hooks/useAuth";
 
-function Payment({ classes, theme }: any) {
+function Payment({ theme }: any) {
   const [processing, setProcessing] = useState(false);
   const [complete, setComplete] = useState(false);
   const { user } = useAuth();
@@ -124,7 +124,7 @@ function Payment({ classes, theme }: any) {
         <form id="checkout_form" onSubmit={handleSubmit}>
           <div className="billings flex">
             <TextField
-              className={`${classes} a`}
+              className={` a`}
               label="Name"
               variant="outlined"
               id="mui-theme-provider-outlined-input"
@@ -134,7 +134,7 @@ function Payment({ classes, theme }: any) {
               required
             />
             <TextField
-              className={`${classes} b`}
+              className={` b`}
               label="Email Address"
               variant="outlined"
               id="mui-theme-provider-outlined-input"
@@ -145,7 +145,7 @@ function Payment({ classes, theme }: any) {
             />
 
             <TextField
-              className={`${classes} c`}
+              className={` c`}
               label="Phone Number"
               variant="outlined"
               id="mui-theme-provider-outlined-input"
@@ -158,7 +158,7 @@ function Payment({ classes, theme }: any) {
           <h6>SHIPPING INFO</h6>
           <div className="shipping">
             <TextField
-              className={`${classes} a`}
+              className={` a`}
               label="Your Address"
               variant="outlined"
               id="mui-theme-provider-outlined-input"
@@ -168,7 +168,7 @@ function Payment({ classes, theme }: any) {
               required
             />
             <TextField
-              className={`${classes} b`}
+              className={` b`}
               label="Zip Code"
               variant="outlined"
               id="mui-theme-provider-outlined-input"
@@ -178,7 +178,7 @@ function Payment({ classes, theme }: any) {
               required
             />
             <TextField
-              className={`${classes} c`}
+              className={` c`}
               label="City"
               variant="outlined"
               id="mui-theme-provider-outlined-input"
@@ -188,7 +188,7 @@ function Payment({ classes, theme }: any) {
               required
             />
             <TextField
-              className={`${classes} d`}
+              className={` d`}
               label="Country"
               variant="outlined"
               id="country"
