@@ -1,5 +1,4 @@
 import { createTheme } from "@mui/material";
-import { makeStyles } from "@mui/styles";
 import { toast } from "react-toastify";
 import axios from "./axios";
 
@@ -57,14 +56,6 @@ export const toastifySucces = (success: string) => {
     pauseOnHover: false,
   });
 };
-
-export const useStyles = makeStyles(() => ({
-  root: {
-    display: "flex",
-    flexWrap: "wrap",
-    background: 500,
-  },
-}));
 
 export const theme = createTheme({
   palette: {
