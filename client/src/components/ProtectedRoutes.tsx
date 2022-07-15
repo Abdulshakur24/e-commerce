@@ -4,7 +4,7 @@ import { useAuth } from "src/hooks/useAuth";
 
 function ProtectedRoutes() {
   const navigator = useNavigate();
-  const { user } = useAuth((state) => state);
+  const { user } = useAuth();
 
   useEffect(() => {
     if (!user) return navigator("/register", { replace: true });
