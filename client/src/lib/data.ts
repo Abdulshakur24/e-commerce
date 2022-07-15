@@ -23,13 +23,7 @@ export const products = [
       { id: 4, times: 1, names: "3.5mm 5m Audio Cable" },
       { id: 5, times: 1, names: "Travel Bag" },
     ],
-    carts: {
-      id: 1,
-      image: require("src/assets/cart/image-xx99-mark-two-headphones.jpg"),
-      name: "XX99 MK II",
-      price: 2999,
-      quantity: 1,
-    },
+
     productsImages: [
       {
         id: 1,
@@ -102,13 +96,7 @@ export const products = [
       { id: 3, times: 1, names: "User Manual" },
       { id: 4, times: 1, names: "3.5mm 5m Audio Cable" },
     ],
-    carts: {
-      id: 2,
-      image: require("src/assets/cart/image-xx99-mark-one-headphones.jpg"),
-      name: "XX99 MK I",
-      price: 1750,
-      quantity: 1,
-    },
+
     productsImages: [
       {
         id: 1,
@@ -181,13 +169,7 @@ export const products = [
       { id: 3, times: 1, names: "User Manual" },
       { id: 4, times: 1, names: "3.5mm 5m Audio Cable" },
     ],
-    carts: {
-      id: 3,
-      image: require("src/assets/cart/image-xx59-headphones.jpg"),
-      name: "XX59",
-      price: 899,
-      quantity: 1,
-    },
+
     productsImages: [
       {
         id: 1,
@@ -261,13 +243,7 @@ export const products = [
       { id: 4, times: 1, names: "3.5mm 10m Audio Cable" },
       { id: 5, times: 1, names: "10m Optical Cable" },
     ],
-    carts: {
-      id: 4,
-      image: require("src/assets/cart/image-zx9-speaker.jpg"),
-      name: "ZX9",
-      price: 4500,
-      quantity: 1,
-    },
+
     productsImages: [
       {
         id: 1,
@@ -341,13 +317,7 @@ export const products = [
       { id: 4, times: 1, names: "3.5mm 7.5m Audio Cable" },
       { id: 5, times: 1, names: "7.5m Optical Cable" },
     ],
-    carts: {
-      id: 5,
-      image: require("src/assets/cart/image-zx7-speaker.jpg"),
-      name: "ZX7",
-      price: 3500,
-      quantity: 1,
-    },
+
     productsImages: [
       {
         id: 1,
@@ -421,13 +391,7 @@ export const products = [
       { id: 4, times: 1, names: "USB-C Charging Cable" },
       { id: 5, times: 1, names: "Travel Pouch" },
     ],
-    carts: {
-      id: 6,
-      image: require("src/assets/cart/image-yx1-earphones.jpg"),
-      name: "YX1",
-      price: 599,
-      quantity: 1,
-    },
+
     productsImages: [
       {
         id: 1,
