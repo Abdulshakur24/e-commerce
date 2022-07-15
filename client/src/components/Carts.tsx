@@ -8,10 +8,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useToggle } from "src/contexts/ToggleProvider";
 import { useCarts } from "src/contexts/CartsProvider";
 import { productType } from "src/types/default";
+import { useAuth } from "src/hooks/useAuth";
 
 function Carts() {
   const { cart, setToggle } = useToggle();
   const { carts: cartsArr, clearCarts } = useCarts();
+  const { logout } = useAuth();
   const navigator = useNavigate();
 
   const getTotal = () => {
@@ -73,11 +75,7 @@ function Carts() {
                             <button onClick={() => setConfirm(false)}>
                               NO
                             </button>
-                            <button
-                            // onClick={() => dispatch(logout())}
-                            >
-                              YES
-                            </button>
+                            <button onClick={() => logout()}>YES</button>
                           </div>
                         </div>
                       )}
