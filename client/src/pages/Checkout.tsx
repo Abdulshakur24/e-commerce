@@ -11,7 +11,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useCarts } from "src/contexts/CartsProvider";
 
 const stripePromise = loadStripe(
-  process.env.REACT_APP_PUBLISHABLE_KEY as string
+  "pk_test_51I9m6jIIzjjTQI3tlzeqnfMb4TtFerGdacTn1afS9UxPZObGopye5u53kYB8E1wDnixxJ8DmoqUbNhysoeoNkXtp00sMYCrjkQ"
 );
 
 function Checkout() {
