@@ -18,22 +18,8 @@ const origin = {
 };
 
 app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: ["'self'"],
-      connectSrc: ["'self'", "https://api.stripe.com"],
-      frameSrc: ["'self'", "https://js.stripe.com", "https://hooks.stripe.com"],
-      childSrc: ["'self'", "https://js.stripe.com"],
-      scriptSrc: ["'self'", "https://js.stripe.com"],
-      styleSrc: [
-        "'self'",
-        "https://fonts.googleapis.com",
-        "https://js.stripe.com",
-      ],
-      fontSrc: ["'self'", "https://fonts.googleapis.com"],
-      imgSrc: ["'self'", "https://*.stripe.com"],
-      baseUri: ["'self'"],
-    },
+  helmet({
+    contentSecurityPolicy: false,
   })
 );
 app.use(compression());
