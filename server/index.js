@@ -17,7 +17,25 @@ const origin = {
   credentials: true,
 };
 
-app.use(helmet());
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      connectSrc: ["'self'", "https://checkout.stripe.com"],
+      frameSrc: ["'self'", "https://checkout.stripe.com"],
+      childSrc: ["'self'", "https://checkout.stripe.com"],
+      scriptSrc: ["'self'", "https://checkout.stripe.com"],
+      styleSrc: [
+        "'self'",
+        "https://fonts.googleapis.com",
+        "https://checkout.stripe.com",
+      ],
+      fontSrc: ["'self'", "https://fonts.gstatic.com"],
+      imgSrc: ["'self'", "https://*.stripe.com", "https://res.cloudinary.com"],
+      baseUri: ["'self'"],
+    },
+  })
+);
 app.use(compression());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
