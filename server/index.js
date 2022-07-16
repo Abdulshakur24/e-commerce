@@ -22,7 +22,7 @@ app.use(
     directives: {
       defaultSrc: ["'self'"],
       connectSrc: ["'self'", "https://api.stripe.com"],
-      frameSrc: ["'self'", "https://js.stripe.com, https://hooks.stripe.com"],
+      frameSrc: ["'self'", "https://js.stripe.com", "https://hooks.stripe.com"],
       childSrc: ["'self'", "https://js.stripe.com"],
       scriptSrc: ["'self'", "https://js.stripe.com"],
       styleSrc: [
