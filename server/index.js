@@ -17,6 +17,12 @@ const origin = {
   credentials: true,
 };
 
+app.use((req, res, next) => {
+  res.removeHeader("Cross-Origin-Resource-Policy");
+  res.removeHeader("Cross-Origin-Embedder-Policy");
+  next();
+});
+
 app.use(
   helmet({
     contentSecurityPolicy: false,
