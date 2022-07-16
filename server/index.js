@@ -30,7 +30,7 @@ app.use((req, res, next) => {
 // );
 app.use(compression());
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
 app.use(cookieParser());
 
