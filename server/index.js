@@ -5,7 +5,6 @@ const app = express();
 const apiRouter = require("./routers/routers");
 const passport = require("passport");
 const cookieParser = require("cookie-parser");
-const helmet = require("helmet");
 const compression = require("compression");
 const morgan = require("morgan");
 const path = require("path");
@@ -23,14 +22,9 @@ app.use((req, res, next) => {
   next();
 });
 
-// app.use(
-//   helmet({
-//     contentSecurityPolicy: false,
-//   })
-// );
 app.use(compression());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true, limit: "10mb" }));
+app.use(express.json({ limit: "50ms" }));
+app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 
 app.use(cookieParser());
 
