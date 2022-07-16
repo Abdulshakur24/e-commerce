@@ -17,11 +17,11 @@ const origin = {
   credentials: true,
 };
 
-app.use((req, res, next) => {
-  res.removeHeader("Cross-Origin-Resource-Policy");
-  res.removeHeader("Cross-Origin-Embedder-Policy");
-  next();
-});
+// app.use((req, res, next) => {
+//   res.removeHeader("Cross-Origin-Resource-Policy");
+//   res.removeHeader("Cross-Origin-Embedder-Policy");
+//   next();
+// });
 
 app.use(passport.initialize());
 app.use(bodyParser.json({ limit: "50mb", extended: true }));
