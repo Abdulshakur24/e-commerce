@@ -1,13 +1,14 @@
 const express = require("express");
 const cors = require("cors");
 require("./config/passport");
-const app = express();
 const apiRouter = require("./routers/routers");
 const passport = require("passport");
 const cookieParser = require("cookie-parser");
-const compression = require("compression");
+const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const path = require("path");
+
+const app = express();
 
 const isProduction = process.env.NODE_ENV === "production";
 
@@ -22,19 +23,15 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(compression());
-app.use(express.json({ limit: "50ms" }));
-app.use(express.urlencoded({ extended: true, limit: "50mb" }));
-
+app.use(passport.initialize());
+app.use(bodyParser.json({ limit: "50mb", extended: true }));
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
+app.use(express.urlencoded({ extended: false }));
+app.use(morgan("dev"));
 app.use(cookieParser());
 
-app.use(morgan("dev"));
-
-app.use(passport.initialize());
-
 app.use(cors(origin));
-app.options("*", cors(origin));
-app.use(express.json());
+
 app.use(apiRouter);
 
 if (isProduction) {
@@ -44,10 +41,20 @@ if (isProduction) {
   });
 }
 
-const PORT = process.env.PORT || 5010;
-
-app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}`);
+app.use((req, res, next) => {
+  next(createError.NotFound());
 });
 
-module.exports = app;
+app.use((err, req, res, next) => {
+  res.status(err.status || 500);
+  res.send({
+    status: err.status || 500,
+    message: err.message,
+  });
+});
+
+const PORT = process.env.PORT || 5010;
+
+app.listen(PORT, () =>
+  console.log(`Listening on port http://localhost:${PORT}`)
+);
