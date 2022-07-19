@@ -19,7 +19,7 @@ export type productType = {
   imageT: any;
   imageD: any;
   type: string;
-  title: boolean;
+  isNew: boolean;
   name: string;
   category: string;
   description: string;
