@@ -60,7 +60,7 @@ function Product(props: productType) {
           <img src={currentImage} alt="" />
         </div>
         <div className="right">
-          {props.title && <p className="newProduct">NEW PRODUCT</p>}
+          {props.isNew && <p className="newProduct">NEW PRODUCT</p>}
           <h4>{props.name}</h4>
           <p className="description">{props.description}</p>
           <h6>$ {props.price.toLocaleString()}</h6>
