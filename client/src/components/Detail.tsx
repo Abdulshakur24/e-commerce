@@ -23,7 +23,7 @@ function Detail(props: productType) {
       </div>
 
       <div className="right">
-        {props.title && <h6>NEW PRODUCT</h6>}
+        {props.isNew && <h6>NEW PRODUCT</h6>}
         <h4>{props.name}</h4>
         <p>{props.description}</p>
         <button onClick={() => navigator(props.path)}>SEE PRODUCT</button>
